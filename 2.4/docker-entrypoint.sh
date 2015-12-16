@@ -51,7 +51,7 @@ if [ -n "$PHPFPM" ]; then
         BALANCEMEMBER=`echo -e "${BALANCEMEMBER}\n\tBalancerMember fcgi://${BACKEND}${HTTPD__DocumentRoot}/\$1 ${PHPFPM_CONFIG:-timeout=5 retry=30 ping=2}"`
     done; IFS=$IFSO;
 
-cat << EOF >> $HTTPD_CONF_DIR/20-phpfpm.conf
+cat << EOF > $HTTPD_CONF_DIR/20-phpfpm.conf
     <Proxy "balancer://phpfpm_balencer/">
         ${BALANCEMEMBER}
     </Proxy>
