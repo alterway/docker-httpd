@@ -11,6 +11,8 @@ ENV HTTPD_CONF_DIR $HTTPD_PREFIX/conf/conf-enabled/
 ENV HTTPD__DocumentRoot /var/www/html
 ENV HTTPD_Directory_AllowOverride All
 ENV HTTPD_Directory_Options 'Indexes FollowSymLinks'
+ENV HTTPD__User www-data
+ENV HTTPD__Group www-data
 
 RUN mkdir -p $HTTPD_CONF_DIR && \
     sed -i "s/DocumentRoot.*/DocumentRoot \${HTTPD__DocumentRoot}/"  $HTTPD_PREFIX/conf/httpd.conf && \
